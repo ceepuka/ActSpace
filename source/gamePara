@@ -1,0 +1,56 @@
+;
+
+;战机固定属性
+HP equ 5	;战机生命值
+FIGHTER_WIDTH equ 17	;宽度（横向像素）
+FIGHTER_HEIGHT equ 19	;高度（纵向像素）
+FIGHTER_INTERVALS equ 4		;战机移动间隔，4个延时单元
+
+;战机子弹固定属性
+BULLET_WIDTH equ 3
+BULLET_HEIGHT equ 3
+BULLET_FLIGHT_INTERVAL equ 3	;战机子弹飞行间隔，3个延时单元
+BULLET_FIRE_INTERVAL equ 30	;战机子弹发射间隔，
+BULLET_MAX_NUM equ 18			;战机子弹最大存在个数
+
+;战斗界面边界
+BORDER_TOP equ 0		;顶部
+BORDER_BOTTOM equ 199	;底部
+LEFT_BORDER equ 0		;左边界
+RIGHT_BORDER equ 239	;右边界
+
+FOES equ 12			;敌机数组容量
+EBULLETS equ 24		;敌机子弹容量
+
+;######################################################	
+;显示图像
+;宏定义，调用outputPicture子程序，传递图片源位置和参数，调用前需要设定bx,si,di
+displayIMG macro ordinate,widths_heights
+	;图片以左上角位置为基准
+	push widths_heights	;低字节为宽，高字节为高
+	push ordinate	;纵坐标
+	call outputPicture
+
+	endm
+	
+;清除图片
+;宏定义，调用clear子程序，传递图片参数，调用前需要设定si,di
+clearPicture macro ordinate,widths_heights
+	;以左上角位置为基准
+	push widths_heights	;低字节为宽，高字节为高
+	push ordinate	;纵坐标
+	call clear
+
+	endm
+	
+;截取图片参数
+;宏定义，调用intercept子程序，传递图片参数，调用前需要设定di
+trimPicture macro abscissa,ordinate,widths_heights
+	;以左上角位置为基准
+	push widths_heights	;低字节为宽，高字节为高
+	push ordinate	;纵坐标
+	push abscissa	;横坐标
+	call cutPicture
+	endm
+
+;######################################################

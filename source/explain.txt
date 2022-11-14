@@ -1,0 +1,1 @@
+Use w, a, s and D keys to control the fighter plane to move up, down, left and right, destroy the enemy plane and increase the score. Use ESC key to pause and return to the main menu. Be careful not to hit the enemy plane or be hit by enemy bullets. This will reduce the fighter's health value. When the health value is 0, the game ends.
